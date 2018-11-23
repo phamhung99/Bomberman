@@ -205,7 +205,7 @@ public class PlayGame extends JPanel implements Runnable,ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btn_Menu){
-			mManager.setRound(1);
+			mManager.setRound();
 			mManager.innitManager();
 			mContainer.setShowMenu();
 		}	

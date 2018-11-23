@@ -18,7 +18,7 @@ public class Option extends JPanel implements ActionListener{
 	
 	public Option(MyContainer mContainer) {
 		this.mContainer = mContainer;
-		setBackground(Color.YELLOW);
+		setBackground(Color.WHITE);
 		setLayout(null);
 		initCompts();
 	}

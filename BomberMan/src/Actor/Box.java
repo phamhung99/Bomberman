@@ -29,7 +29,7 @@ public class Box {
 	public int getType() {
 		return type;
 	}
-	
+	   
 	
 	public int isImpactBoxvsActor(Actor actor){
 		if(actor.getType()==Actor.BOSS){
@@ -77,5 +77,7 @@ public class Box {
 	public int getHeight() {
 		return height;
 	}
+
+    
 
 }

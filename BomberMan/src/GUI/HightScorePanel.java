@@ -54,7 +54,7 @@ public class HightScorePanel extends JPanel implements ActionListener{
 	}
 	
 	public void drawImage(Graphics2D g2d){
-		Image background = new ImageIcon(getClass().getResource("/Images/background_hightscore.png")).getImage();
+		Image background = new ImageIcon(getClass().getResource("/Images/background_hightscore.jpg")).getImage();
 		g2d.drawImage(background, 0, 0, null);
 	}
 	
@@ -62,14 +62,14 @@ public class HightScorePanel extends JPanel implements ActionListener{
 		g2d.setStroke(new java.awt.BasicStroke(2));
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setFont(new Font("Arial", Font.BOLD, 30));
-		g2d.setColor(Color.RED);	
-		g2d.drawRect(250, 50, 400, 450);
+//		g2d.setColor(Color.RED);	
+//		g2d.drawRect(250, 50, 400, 450);
 		g2d.setColor(Color.YELLOW);
 		int y=100;
 		for(int i=0;i<arrHightScore.size();i++){
 			g2d.drawString(""+(i+1), 270, y);
-			g2d.drawString(""+arrHightScore.get(i).getName(), 380, y);
-			g2d.drawString(""+arrHightScore.get(i).getScore(), 600, y);
+			g2d.drawString(""+arrHightScore.get(i).getName(), 300, y);
+			g2d.drawString(""+arrHightScore.get(i).getScore(), 500, y);
 			y=y+40;
 		}
 		

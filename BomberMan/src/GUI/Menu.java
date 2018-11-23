@@ -66,7 +66,7 @@ public class Menu extends JPanel{
 		lbbackground = new JLabel();
 		lbbackground.setBounds(0, -10, mGui.getWidth(), mGui.getHeight());
 		lbbackground.setBackground(Color.BLACK);
-		backgroundIcon = new ImageIcon(getClass().getResource("/Images/background_Menu.png"));
+		backgroundIcon = new ImageIcon(getClass().getResource("/Images/background_Menu.jpg"));
 		lbbackground.setIcon(backgroundIcon);
                 
 		add(lbbackground);

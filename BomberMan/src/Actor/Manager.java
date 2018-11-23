@@ -554,7 +554,7 @@ public class Manager {
 		return status;
 	}
 
-	public void setRound(int round) {
+	public void setRound() {
 		this.round = 1;
 	}
 	
