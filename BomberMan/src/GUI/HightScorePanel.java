@@ -59,6 +59,7 @@ public class HightScorePanel extends JPanel implements ActionListener{
 	}
 	
 	public void drawHightSore(Graphics2D g2d){
+            System.out.println("Draw");
 		g2d.setStroke(new java.awt.BasicStroke(2));
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setFont(new Font("Arial", Font.BOLD, 30));
@@ -76,6 +77,7 @@ public class HightScorePanel extends JPanel implements ActionListener{
 	}
 	
 	public void ReadFileHightScore(){
+            System.out.println("Read file");
 		arrHightScore = new ArrayList<HightScore>();
 		try {
 			FileReader file = new FileReader("src/hightscore/HightScore.txt");

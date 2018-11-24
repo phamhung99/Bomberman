@@ -39,6 +39,7 @@ public class Manager {
 	private int round=1;
 	private int nextRound = 0;
 	private int status = 0;
+        public boolean flag = false;
 
 	public Manager() {
 		innitManager();
@@ -48,11 +49,12 @@ public class Manager {
 		switch (round) {
 		case 1:
                        // public Bomber(int x, int y, int type, int orient, int speed, int sizebomb, int quantityBomb) {
-			mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 5, 3, 4);
+			mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 5, 1, 5);
 			innit("src/Map1/BOX.txt", "src/Map1/SHADOW.txt",
 					"src/Map1/MONSTER.txt", "src/Map1/ITEM.txt");
 			nextRound = 0;
 			status = 0;
+                        flag = false;
 			break;
 		case 2:
 			mBomber.setNew(315, 270);
@@ -60,6 +62,7 @@ public class Manager {
 					"src/Map2/MONSTER.txt", "src/Map2/ITEM.txt");
 			nextRound = 0;
 			status = 0;
+                        flag = false;
 			break;
 		case 3:
 			mBomber.setNew(315, 495);
@@ -67,6 +70,7 @@ public class Manager {
 					"src/Map3/MONSTER.txt", "src/Map3/ITEM.txt");
 			nextRound = 0;
 			status = 0;
+                        flag = false;
 			break;
 
 		default:
@@ -315,7 +319,8 @@ public class Manager {
 			GameSound.getIstance().getAudio(GameSound.LOSE).play();
 			saveScore();
 		}
-		if (arrMonster.size() == 0 && nextRound == 0) {
+		if (arrMonster.size() == 0 && nextRound == 0 && flag == true) {
+                        
 			if (round == 3) {
 				status = 3;
 				nextRound++;
@@ -328,6 +333,7 @@ public class Manager {
 			round = round + 1;
 			nextRound++;
 			status = 2;
+                        
 		}
 	}
 
@@ -363,7 +369,7 @@ public class Manager {
 	public void checkImpactItem() {
 		for (int i = 0; i < arrItem.size(); i++) {
 			if (arrItem.get(i).isImpactItemVsBomber(mBomber)) {
-				GameSound.instance.getAudio(GameSound.ITEM).play();
+                                if(arrItem.get(i).getType() != Item.Item_nextRound) GameSound.instance.getAudio(GameSound.ITEM).play();
 				if (arrItem.get(i).getType() == Item.Item_Bomb) {
 					mBomber.setQuantityBomb(mBomber.getQuantityBomb() + 1);
 					arrItem.remove(i);
@@ -378,6 +384,13 @@ public class Manager {
 					mBomber.setSpeed(mBomber.getSpeed() - 1);
 					arrItem.remove(i);
 					break;
+				}
+                                if (arrItem.get(i).getType() == Item.Item_nextRound) {
+					if(arrMonster.size()== 0){
+                                            flag = true;
+                                            break;
+                                        }
+					
 				}
 			}
 		}
@@ -461,6 +474,12 @@ public class Manager {
 			if (arrBomb.get(arrBomb.size() - 1).setRun(mBomber) == false) {
 				mBomber.setRunBomb(Bomber.DISALLOW_RUN);
 			}
+//                    for(int i =0; i< arrBomb.size(); i++){
+//                        if(arrBomb.get(i).setRun(mBomber) == true)
+//                        return;
+//                    
+//                    }
+//                    mBomber.setRunBomb(Bomber.DISALLOW_RUN);
 		}
 	}
 
@@ -498,9 +517,9 @@ public class Manager {
 	}
 	
 	public void saveScore(){
-		System.out.println();
+		
          
-                    if(mBomber.getScore()> 10){
+                if(mBomber.getScore()> 10){
 			String name = JOptionPane.showInputDialog("Please input Your Name");
 			HightScore newScore = new HightScore(name, mBomber.getScore());
 			arrHightScore.add(newScore);
@@ -536,6 +555,7 @@ public class Manager {
 		} catch (IOException e ) {
 			e.printStackTrace();
 		}
+               
 	}
 
 	public ArrayList<Box> getArrBox() {

@@ -17,7 +17,7 @@ public class MyContainer extends JPanel{
 	private Menu mMenu;
 	private PlayGame mPlayGame;
 	private Option mOption;
-	private HightScorePanel mHightScorePanel;
+	protected HightScorePanel mHightScorePanel;
 	
 	public MyContainer(GUI mGui){
 		this.gui = mGui;
@@ -60,8 +60,11 @@ public class MyContainer extends JPanel{
 	}
 	
 	public void setShowHightScore(){
-		mCardLayout.show(MyContainer.this, TAG_HIGHTSCORE);
-		mHightScorePanel.requestFocus();
+            mHightScorePanel.ReadFileHightScore();
+            
+            //mHightScorePanel.repaint();
+            mCardLayout.show(MyContainer.this, TAG_HIGHTSCORE);
+            boolean requestFocusInWindow = mHightScorePanel.requestFocusInWindow();
 	}
 	
 }

@@ -107,7 +107,7 @@ public class PlayGame extends JPanel implements Runnable,ActionListener{
 	@Override
 	public void run() {
 		while(IS_RUNNING ){
-                   
+                        
                         mManager.getmBomber().Update_Anim();
 			try {
 				Thread.sleep(1);

@@ -1,5 +1,6 @@
 package Actor;
 
+import static Actor.Item.Item_nextRound;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -105,6 +106,7 @@ public class BombBang {
 	}
 	
 	public boolean isImpactBombBangvsItem(Item item){
+                if(item.getType() == Item_nextRound) return false;
 		Rectangle rec1 = new Rectangle(x+45-img_left.getWidth(null), y, img_left.getWidth(null), img_left.getHeight(null));
 		Rectangle rec2 = new Rectangle(x, y, img_right.getWidth(null), img_right.getHeight(null));
 		Rectangle rec3 = new Rectangle(x, y+45-img_up.getHeight(null), img_up.getWidth(null), img_up.getHeight(null));
