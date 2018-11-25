@@ -43,7 +43,7 @@ public class Bomber extends Actor{
 		this.speed = speed;
 		this.sizeBomb = sizebomb;
 		this.quantityBomb = quantityBomb;
-		this.heart = 3;
+		this.heart = 5;
 		this.score=0;
 		this.status = Actor.ALIVE;
             

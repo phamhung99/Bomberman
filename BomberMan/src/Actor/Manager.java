@@ -228,14 +228,14 @@ public class Manager {
 
 	public void drawDialog(Graphics2D g2d, int type) {
 		g2d.setFont(new Font("Arial", Font.BOLD, 70));
-		g2d.setColor(Color.RED);
+		g2d.setColor(Color.BLACK);
 		if(type==1){
-			g2d.drawString("You Lose !!!", 200, 250);
+			g2d.drawString("Bạn đã thua !!!", 200, 250);
 		}else{
 			if(type==2){
-				g2d.drawString("Round "+round, 200, 250);
+				g2d.drawString("Màn "+round, 200, 250);
 			}else{
-				g2d.drawString("You Win !!!", 200, 250);
+				g2d.drawString("Chiến thắng !!!", 200, 250);
 			}
 		}
 	}
@@ -272,7 +272,20 @@ public class Manager {
 		g2d.drawImage(imgInfor, 675, 0, null);
 		g2d.drawString("HEART", 755, 100);
 		Image heart = new ImageIcon(getClass().getResource(
-				"/Images/heart_1.png")).getImage();
+				"/Images/heart.png")).getImage();
+                if (mBomber.getHeart() == 5) {
+                        g2d.drawImage(heart, 760, 150, null);
+                        g2d.drawImage(heart, 790, 150, null);
+			g2d.drawImage(heart, 750, 120, null);
+			g2d.drawImage(heart, 775, 120, null);
+			g2d.drawImage(heart, 800, 120, null);
+		}
+                if (mBomber.getHeart() == 4) {
+                        g2d.drawImage(heart, 775, 150, null);
+			g2d.drawImage(heart, 750, 120, null);
+			g2d.drawImage(heart, 775, 120, null);
+			g2d.drawImage(heart, 800, 120, null);
+		}
 		if (mBomber.getHeart() == 3) {
 			g2d.drawImage(heart, 750, 120, null);
 			g2d.drawImage(heart, 775, 120, null);
@@ -286,12 +299,13 @@ public class Manager {
 			g2d.drawImage(heart, 775, 120, null);
 		}
 
-		g2d.drawString("SCORE : " + mBomber.getScore(), 740, 200);
+		g2d.drawString("Điểm số : " + mBomber.getScore(), 740, 200);
 	}
 
 	public void drawAllBomb(Graphics2D g2d) {
 		for (int i = 0; i < arrBomb.size(); i++) {
-			arrBomb.get(i).drawActor(g2d);
+                        arrBomb.get(i).Update();
+			arrBomb.get(i).Draw(g2d);
 		}
 		for (int i = 0; i < arrBombBang.size(); i++) {
 			arrBombBang.get(i).drawBongBang(g2d);
@@ -383,6 +397,13 @@ public class Manager {
 				if (arrItem.get(i).getType() == Item.Item_Shoe) {
 					mBomber.setSpeed(mBomber.getSpeed() - 1);
 					arrItem.remove(i);
+					break;
+				}
+                                if (arrItem.get(i).getType() == Item.Item_Heart) {
+					if(mBomber.getHeart() < 5){
+                                            mBomber.setHeart(mBomber.getHeart()+1);     
+                                        }
+                                        arrItem.remove(i);
 					break;
 				}
                                 if (arrItem.get(i).getType() == Item.Item_nextRound) {
@@ -520,7 +541,7 @@ public class Manager {
 		
          
                 if(mBomber.getScore()> 10){
-			String name = JOptionPane.showInputDialog("Please input Your Name");
+			String name = JOptionPane.showInputDialog("Nhập tên của bạn :");
 			HightScore newScore = new HightScore(name, mBomber.getScore());
 			arrHightScore.add(newScore);
 		}

@@ -67,6 +67,7 @@ public class PlayGame extends JPanel implements Runnable,ActionListener{
 		mManager.draWBackground(g2d);
 		mManager.drawAllItem(g2d);
 		mManager.drawAllBomb(g2d);
+                
 		mManager.drawAllBox(g2d);
 		mManager.drawAllMonster(g2d);
 		//mMagager.getmBomber().drawActor(g2d);

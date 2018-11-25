@@ -8,3 +8,5 @@
 225:495:3:/Images/item_shoe.png
 495:315:3:/Images/item_shoe.png
 45:45:4:/Images/item_nextRound.png
+495:45:5:/Images/item_Heart.png
+585:315:5:/Images/item_Heart.png

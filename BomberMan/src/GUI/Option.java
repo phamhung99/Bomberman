@@ -18,14 +18,15 @@ public class Option extends JPanel implements ActionListener{
 	
 	public Option(MyContainer mContainer) {
 		this.mContainer = mContainer;
-		setBackground(Color.WHITE);
+		setBackground(Color.YELLOW);
 		setLayout(null);
 		initCompts();
 	}
 	
 	public void initCompts(){
 		lbbackground = new JLabel();
-		lbbackground.setBounds(95, -40, GUI.WIDTHJF, GUI.HEIGHTJF);
+             
+		lbbackground.setBounds(40, -40, GUI.WIDTHJF, GUI.HEIGHTJF);
 		lbbackground.setBackground(Color.BLACK);
 		backgroundIcon = new ImageIcon(getClass().getResource("/Images/background_option.png"));
 		lbbackground.setIcon(backgroundIcon);

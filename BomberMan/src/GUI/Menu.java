@@ -83,6 +83,7 @@ public class Menu extends JPanel{
 	private MouseAdapter mMouseAdapter = new MouseAdapter() {
 		@Override
 		public void mouseEntered(MouseEvent e) {
+                    GameSound.getIstance().getAudio(GameSound.BOMB).play();
 			if(e.getSource()==lbPlayGame){
 				ImageIcon playIcon = new ImageIcon(getClass().getResource("/Images/Play2.png"));
 				lbPlayGame.setIcon(playIcon);
@@ -124,18 +125,21 @@ public class Menu extends JPanel{
 		@Override
 		public void mousePressed(MouseEvent e) {
 			if(e.getSource()==lbExit){
+                                GameSound.getIstance().getAudio(GameSound.BOMB).play();
 				GameSound.getIstance().getAudio(GameSound.MENU).stop();
 				mGui.dispose();
 				PlayGame.IS_RUNNING=false;
 			}
 			if(e.getSource()==lbPlayGame){
+                            GameSound.getIstance().getAudio(GameSound.BOMB).play();
 				mContainer.setShowPlay();
 			}
 			if(e.getSource()==lbOption){
+                            GameSound.getIstance().getAudio(GameSound.BOMB).play();
 				mContainer.setShowOption();
 			}
 			if(e.getSource()==lbHigthScore){
-                               
+                               GameSound.getIstance().getAudio(GameSound.BOMB).play();
 				mContainer.setShowHightScore();
 			}
 		}

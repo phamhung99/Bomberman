@@ -1,14 +1,24 @@
 package Actor;
 
+import Effect.AFrameOnImage;
+import Effect.Animation;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 import javax.swing.ImageIcon;
 
 public class Bomb extends Actor{
 
 	protected int size, timeline;
+        Animation Anim_bomb;
+        BufferedImage image;
 	
 	public Bomb(int x, int y, int size, int timeline){
 		x=(x/45)*45;
@@ -19,11 +29,31 @@ public class Bomb extends Actor{
 		this.orient=0;
 		this.timeline = timeline;
 		this.type =Actor.BOMB;
-		img= new ImageIcon(getClass().getResource("/Images/bomb.png")).getImage();
-		this.width= img.getWidth(null);
-		this.height= img.getHeight(null);
+//		img= new ImageIcon(getClass().getResource("/Images/bomb.png")).getImage();
+		this.width= 45;
+		this.height= 45;
+                initAnim();
 	}
-	
+        public void initAnim(){
+            Anim_bomb = new Animation(100);
+            try {
+                image = ImageIO.read(new File("src/Images/Bomb_Sprites.png"));
+            } catch (IOException ex) {
+                Logger.getLogger(Bomber.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            AFrameOnImage f ;
+            f = new AFrameOnImage(0, 0, 40, 45);
+            Anim_bomb.AddFrame(f);
+            f = new AFrameOnImage(40, 0, 40, 45);
+            Anim_bomb.AddFrame(f);
+        }
+        public void Update(){
+            Anim_bomb.Update_Me(System.currentTimeMillis());
+        }
+        
+	public void Draw(Graphics2D g2){
+            Anim_bomb.PaintAnims(x, y, image, g2);
+        }
 
 	public void deadlineBomb(){
 		this.timeline--;
